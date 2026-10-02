@@ -13,7 +13,11 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - Used to be able to predictably dictate what color your printed directory tree text is (in supported terminals)
 - To use, one must prepend the ANSI code to the text, or append the RESET code to reset back to black 
 ## ColorPrinter.java / ColorPrinterTest.java
-
+- ColorPrinter is a helper class for printing colored text to a PrintStream using ANSI escape codes 
+- ColorPrinter allows setting a current color and then printing messages in that specified color
+- Caveat: Colors can be reset after each print or kept active based on the provided parameters
+- ColorPrinter can only understand ANSI codes defined in the enum class ConsoleColor.java
+- ColorPrinterTest is a testing class which is used to verify the validity of the code in ColorPrinter, where it attempts to capture the printed output, print the message, and then verify if the printed output is as suggested
 ## TruffulaOptions.java / TruffulaOptionsTest.java
 
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
