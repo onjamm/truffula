@@ -9,7 +9,9 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - \['\-nc', '\-h', '/path/to/directory' \]
 - \-nc (no color) \-h (show hidden files)
 ## ConsoleColor.java
-
+- This is an enum which holds constant values of colors and their corresponding ANSI code
+- Used to be able to predictably dictate what color your printed directory tree text is (in supported terminals)
+- To use, one must prepend the ANSI code to the text, or append the RESET code to reset back to black 
 ## ColorPrinter.java / ColorPrinterTest.java
 
 ## TruffulaOptions.java / TruffulaOptionsTest.java
