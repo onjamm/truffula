@@ -30,3 +30,6 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - TruffulaPrinterTest ensures the sanctity of the code contained within TruffulaPrinter.
 - I'm noticing it first checks the operating system, as it seems that windows requires some more specific information about the path, and some file attributes?
 ## AlphabeticalFileSorter.java
+- AlphabeticalFileSorter is a helper class which take in an array of files and sorts them alphabetically
+- the method sort(File\[\] files) uses an Arrays.sort() method that I'm pretty sure is the lambda (an anonymous function)
+-Files are sorted ignoring case differences, meaning that files with the same name, and only lexiographical differences, will be sorted based on the order they are iterated over.
