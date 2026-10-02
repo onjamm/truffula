@@ -24,5 +24,9 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - Throws an IllegalArgumentException if unknown flags are provided or if the path arg is missing, or a FileNotFoundException if the path does not exist, or points to a file instead of a directory.
 - TruffulaOptionsTest, tests the validity of TruffulaOptions, by creating a temporary directory, and test options, where the properties of TruffulaOptions are checked to confirm they are as provided.
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
-
+- Question: I thought that ColorPrinter was responsible for printing a tree structure with color?
+- TruffulaPrinter is responsible for printing a directory tree structure with an optional colored ouput, supporting sorting files and directories.
+- Directories and files are sorted in a case-insensitive manner, with 3 spaces of indentation separating each directory level, with the final expected behavior sorting identical case-insensitive names lexicographically
+- TruffulaPrinterTest ensures the sanctity of the code contained within TruffulaPrinter.
+- I'm noticing it first checks the operating system, as it seems that windows requires some more specific information about the path, and some file attributes?
 ## AlphabeticalFileSorter.java
