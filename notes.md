@@ -19,7 +19,10 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - ColorPrinter can only understand ANSI codes defined in the enum class ConsoleColor.java
 - ColorPrinterTest is a testing class which is used to verify the validity of the code in ColorPrinter, where it attempts to capture the printed output, print the message, and then verify if the printed output is as suggested
 ## TruffulaOptions.java / TruffulaOptionsTest.java
-
+- TruffulaOptions represents the configuration options for controlling how the directory tree is displayed.
+- Three arguments are allowed, (\-h, \-nc, /path/to/directory), but only the path is required
+- Throws an IllegalArgumentException if unknown flags are provided or if the path arg is missing, or a FileNotFoundException if the path does not exist, or points to a file instead of a directory.
+- TruffulaOptionsTest, tests the validity of TruffulaOptions, by creating a temporary directory, and test options, where the properties of TruffulaOptions are checked to confirm they are as provided.
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
 
 ## AlphabeticalFileSorter.java
