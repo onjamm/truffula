@@ -4,7 +4,10 @@ As part of Wave 0, please fill out notes for each of the below files. They are i
 PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 
 ## App.java
-
+- Inside of this class is the main method that calls the TruffulaOptions object, which can have flags passed as arguments that manipulate the behavior of the printed directory tree (order of flags ignored)
+- Although the TruffulaOptions object only requires one argument: the path to the directory which contents are to be printed
+- \['\-nc', '\-h', '/path/to/directory' \]
+- \-nc (no color) \-h (show hidden files)
 ## ConsoleColor.java
 
 ## ColorPrinter.java / ColorPrinterTest.java
