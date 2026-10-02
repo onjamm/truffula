@@ -32,4 +32,4 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 ## AlphabeticalFileSorter.java
 - AlphabeticalFileSorter is a helper class which take in an array of files and sorts them alphabetically
 - the method sort(File\[\] files) uses an Arrays.sort() method that I'm pretty sure is the lambda (an anonymous function)
--Files are sorted ignoring case differences, meaning that files with the same name, and only lexiographical differences, will be sorted based on the order they are iterated over.
+- Files are sorted ignoring case differences, meaning that files with the same name, and only lexiographical differences, will be sorted based on the order they are iterated over.
