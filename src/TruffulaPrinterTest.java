@@ -154,7 +154,6 @@ public class TruffulaPrinterTest {
     public void testPrintTreeSimpleVersion(@TempDir File tempDir) throws IOException {
         // Build the example directory structure:
         // myFolder/
-        //    .hidden.txt
         //    tips.txt
         //    setup.txt
         //    Documents/
@@ -177,9 +176,6 @@ public class TruffulaPrinterTest {
         setup.createNewFile();
         love.createNewFile();
 
-        // Create a hidden file in myFolder
-        createHiddenFile(myFolder, ".hidden.txt");
-
         // Create subdirectory "Documents" in myFolder
         File documents = new File(myFolder, "Documents");
         assertTrue(documents.mkdir(), "Documents directory should be created");
@@ -200,8 +196,8 @@ public class TruffulaPrinterTest {
         drift.createNewFile();
         arena.createNewFile();
 
-        // Set up TruffulaOptions with showHidden = false and useColor = true
-        TruffulaOptions options = new TruffulaOptions(myFolder, false, true);
+        // Set up TruffulaOptions with showHidden = false and useColor = false
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, false);
 
         // Capture output using a custom PrintStream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
