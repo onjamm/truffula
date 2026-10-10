@@ -138,6 +138,7 @@ public class TruffulaPrinter {
     if (children == null) return;
     
     for (File child : children) {
+        if (!options.isShowHidden() && child.isHidden()) continue;
         printTreeHelper(child, depth + 1);
     }
     }
