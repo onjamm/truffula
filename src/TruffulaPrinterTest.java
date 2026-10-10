@@ -306,23 +306,6 @@ public class TruffulaPrinterTest {
 
         // Retrieve printed output
         String output = baos.toString();
-        String nl = System.lineSeparator();
-
-        // Build expected output with exact colors and indentation
-        ConsoleColor reset = ConsoleColor.RESET;
-        ConsoleColor white = ConsoleColor.WHITE; 
-
-        StringBuilder expected = new StringBuilder();
-        expected.append(white).append("myFolder/").append(nl).append(reset);
-        expected.append(white).append("   tips.txt").append(nl).append(reset);
-        expected.append(white).append("   setup.txt").append(nl).append(reset);
-        expected.append(white).append("   Documents/").append(nl).append(reset);
-        expected.append(white).append("      images/").append(nl).append(reset);
-        expected.append(white).append("         drift.png").append(nl).append(reset);
-        expected.append(white).append("         arena.png").append(nl).append(reset);
-        expected.append(white).append("      notes.txt").append(nl).append(reset);
-        expected.append(white).append("      README.md").append(nl).append(reset);
-        expected.append(white).append("   love.txt").append(nl).append(reset);
 
         String[] names = {
             "myFolder/", ".hidden.txt", "tips.txt", "setup.txt", "Documents/", 
@@ -401,24 +384,7 @@ public class TruffulaPrinterTest {
 
         // Retrieve printed output
         String output = baos.toString();
-        String nl = System.lineSeparator();
-
-        // Build expected output with exact colors and indentation
-        ConsoleColor reset = ConsoleColor.RESET;
-        ConsoleColor white = ConsoleColor.WHITE; 
-
-        StringBuilder expected = new StringBuilder();
-        expected.append(white).append("myFolder/").append(nl).append(reset);
-        expected.append(white).append("   tips.txt").append(nl).append(reset);
-        expected.append(white).append("   setup.txt").append(nl).append(reset);
-        expected.append(white).append("   Documents/").append(nl).append(reset);
-        expected.append(white).append("      images/").append(nl).append(reset);
-        expected.append(white).append("         drift.png").append(nl).append(reset);
-        expected.append(white).append("         arena.png").append(nl).append(reset);
-        expected.append(white).append("      notes.txt").append(nl).append(reset);
-        expected.append(white).append("      README.md").append(nl).append(reset);
-        expected.append(white).append("   love.txt").append(nl).append(reset);
-
+        
         String[] names = {
             "myFolder/", "tips.txt", "setup.txt", "Documents/", 
             "images/", "drift.png", "arena.png", "notes.txt",
@@ -428,6 +394,110 @@ public class TruffulaPrinterTest {
         for (String name : names) {
             assertTrue(output.contains(name), "Missing from output " + name);
         }
+        // // Assert that the output matches the expected output exactly
+        // assertEquals(expected.toString(), output);
+    }
+
+    @Test
+    public void testPrintWithColorSimple(@TempDir File tempDir) throws IOException {
+        // Build the example directory structure:
+        // myFolder/
+        //    Documents/
+        //       images/
+
+        // Create "myFolder"
+        File myFolder = new File(tempDir, "myFolder");
+        assertTrue(myFolder.mkdir(), "myFolder should be created");
+
+        // Create subdirectory "Documents" in myFolder
+        File documents = new File(myFolder, "Documents");
+        assertTrue(documents.mkdir(), "Documents directory should be created");
+
+        // Create subdirectory "images" in Documents
+        File images = new File(documents, "images");
+        assertTrue(images.mkdir(), "images directory should be created");
+
+        // Set up TruffulaOptions with showHidden = false and useColor = false
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, true);
+
+        // Capture output using a custom PrintStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Instantiate TruffulaPrinter with custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+        // Call printTree (output goes to printStream)
+        printer.printTree();
+
+        // Retrieve printed output
+        String output = baos.toString();
+        
+        // String[] names = {
+        //     "myFolder/", "Documents/", 
+        //     "images/", 
+       
+        // };
+
+        // for (String name : names) {
+        //     assertTrue(output.contains(name), "Missing from output " + name);
+        // }
+
+        assertTrue(output.contains(ConsoleColor.WHITE + "myFolder/"));
+        assertTrue(output.contains(ConsoleColor.PURPLE + "   Documents/"));
+        assertTrue(output.contains(ConsoleColor.YELLOW + "      images/"));
+        // // Assert that the output matches the expected output exactly
+        // assertEquals(expected.toString(), output);
+    }
+
+    @Test
+    public void testPrintWithNoColorSimple(@TempDir File tempDir) throws IOException {
+        // Build the example directory structure:
+        // myFolder/
+        //    Documents/
+        //       images/
+
+        // Create "myFolder"
+        File myFolder = new File(tempDir, "myFolder");
+        assertTrue(myFolder.mkdir(), "myFolder should be created");
+
+        // Create subdirectory "Documents" in myFolder
+        File documents = new File(myFolder, "Documents");
+        assertTrue(documents.mkdir(), "Documents directory should be created");
+
+        // Create subdirectory "images" in Documents
+        File images = new File(documents, "images");
+        assertTrue(images.mkdir(), "images directory should be created");
+
+        // Set up TruffulaOptions with showHidden = false and useColor = false
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, false);
+
+        // Capture output using a custom PrintStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Instantiate TruffulaPrinter with custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+        // Call printTree (output goes to printStream)
+        printer.printTree();
+
+        // Retrieve printed output
+        String output = baos.toString();
+        
+        // String[] names = {
+        //     "myFolder/", "Documents/", 
+        //     "images/", 
+       
+        // };
+
+        // for (String name : names) {
+        //     assertTrue(output.contains(name), "Missing from output " + name);
+        // }
+
+        assertTrue(output.contains(ConsoleColor.WHITE + "myFolder/"));
+        assertTrue(output.contains(ConsoleColor.WHITE + "   Documents/"));
+        assertTrue(output.contains(ConsoleColor.WHITE + "      images/"));
         // // Assert that the output matches the expected output exactly
         // assertEquals(expected.toString(), output);
     }

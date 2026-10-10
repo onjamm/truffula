@@ -128,7 +128,13 @@ public class TruffulaPrinter {
     if (current.isDirectory()) {
         name += "/";
     }
+    ConsoleColor color = ConsoleColor.WHITE;
 
+    if (options.isUseColor()) {
+        color = colorSequence.get(depth % colorSequence.size());
+    }
+
+    out.setCurrentColor(color);
     out.println(indent + name);
 
     if (!current.isDirectory()) return;
