@@ -107,14 +107,14 @@ public class TruffulaOptions  {
     }
 
     Boolean hidden = false;
-    Boolean noColor = false;
+    Boolean hasColor = true;
 
     for (int i = 0; i < args.length; i++) {
         
         if(args[i].equals("-h")) {
             hidden = true;
         } else if (args[i].equals("-nc")) {
-            noColor = true;
+            hasColor = true;
         } else if(args[i].startsWith("-")) {
             throw new IllegalArgumentException("Unknown flag, (-nc), (-h) only");
         }
@@ -125,7 +125,7 @@ public class TruffulaOptions  {
 
     root = origin;
     showHidden = hidden;
-    useColor = noColor;
+    useColor = hasColor;
   }
 
   /**
