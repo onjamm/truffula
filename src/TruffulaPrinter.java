@@ -143,6 +143,7 @@ public class TruffulaPrinter {
 
     if (children == null) return;
     
+    children = AlphabeticalFileSorter.sort(children);
     for (File child : children) {
         if (!options.isShowHidden() && child.isHidden()) continue;
         printTreeHelper(child, depth + 1);
